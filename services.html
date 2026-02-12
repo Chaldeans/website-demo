@@ -1,100 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services | Kassa Technical Solutions</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | Kassa Technical Solutions</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo-wrapper">
-                <img src="IMG_9497.jpg" alt="Logo" class="brand-pfp">
-                <div class="brand-name">KASSA <span>SERVICES</span></div>
-            </div>
-            <div class="nav-right">
-                <ul class="nav-links">
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="services.html" class="active">SERVICES</a></li>
-                    <li class="dropdown">
-                        <a href="shop.html" class="dropbtn">SHOP <span class="arrow">▾</span></a>
-                        </li>
-                    <li>
-                        <a href="javascript:void(0)" onclick="toggleCart()" class="cart-nav-link">
-                            CART <span id="cart-count" class="cart-badge">0</span>
-                        </a>
-                    </li>
+
+  <!-- Cart Sidebar -->
+  <aside id="cart-sidebar" class="cart-sidebar" aria-label="Cart Sidebar">
+    <div class="cart-header">
+      <h3>EQUIPMENT MANIFEST</h3>
+      <!-- ✅ no onclick (JS handles it) -->
+      <button id="close-cart" class="close-btn" type="button" aria-label="Close cart">×</button>
+    </div>
+
+    <div id="cart-items" class="cart-items-container">
+      <p class="empty-msg">No hardware selected.</p>
+    </div>
+
+    <div class="cart-footer">
+      <button id="wipe-cart" class="cart-link-btn" type="button">WIPE MANIFEST</button>
+
+      <div class="total-row">
+        <span class="cart-subtotal-label">SUBTOTAL</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+
+      <button class="btn-primary checkout-btn" type="button">Initiate Checkout</button>
+    </div>
+  </aside>
+
+  <!-- ✅ no onclick (JS handles overlay click) -->
+  <div id="cart-overlay" class="cart-overlay" aria-hidden="true"></div>
+
+  <!-- Background -->
+  <div class="background-grid"></div>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo-wrapper">
+        <img src="IMG_9497.jpg" alt="Kassa Technical Solutions logo" class="brand-pfp" />
+        <div class="brand-name">KASSA <span>SERVICES</span></div>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="services.html" class="active">SERVICES</a></li>
+
+        <li class="dropdown">
+          <a href="shop.html" class="dropbtn">SHOP <span class="arrow">▾</span></a>
+          <div class="mega-menu">
+            <div class="mega-content">
+              <div class="mega-column">
+                <h3 class="column-title">EQUIPMENT</h3>
+                <ul class="mega-list">
+                  <li><a href="shop.html?cat=pcs">Gaming PCs</a></li>
+                  <li><a href="shop.html?cat=monitors">Gaming Monitors</a></li>
+                  <li><a href="shop.html?cat=mice">Gaming Mice</a></li>
+                  <li><a href="shop.html?cat=keyboards">Gaming Keyboards</a></li>
                 </ul>
+              </div>
+
+              <div class="mega-column">
+                <h3 class="column-title">SERVICES</h3>
+                <ul class="mega-list">
+                  <li><a href="shop.html?cat=tuning">Tuning Services</a></li>
+                  <li><a href="shop.html?cat=software">Software Help</a></li>
+                </ul>
+              </div>
             </div>
-        </nav>
-    </header>
+          </div>
+        </li>
 
-    <main style="padding: 80px 8%;">
-        <div style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
-            <span class="pill-label">Operational Support</span>
-            <h2 style="font-size: 3rem; margin-top: 20px;">Technical <span class="purple-gradient">Mastery</span></h2>
-            <p style="color: #888; margin-top: 15px; margin-bottom: 20px;">
-    Elite-level diagnostics and system hardening for competitive environments.
-</p>
-        </head>
+        <!-- ✅ MUST be id="open-cart" (JS uses this) -->
+        <li>
+          <a href="#" id="open-cart" class="cart-nav-link" aria-label="Open cart">
+            CART <span id="cart-count" class="cart-badge">0</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-        <div class="glass-grid" style="max-width: 1100px; margin: 0 auto 100px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
-            <div class="glass-card" style="display: flex; flex-direction: column; text-align: left;">
-                <span class="pill-label" style="width: fit-content;">Diagnostics</span>
-                <h3 style="margin: 20px 0 10px;">Hardware Analysis</h3>
-                <p style="color: #888; font-size: 0.9rem; line-height: 1.6;">Component-level failure testing and stress analysis for high-load systems.</p>
+  <!-- Main -->
+  <main class="services-page">
+    <!-- Hero / Intro -->
+    <section class="services-hero">
+      <div class="services-hero-inner">
+        <span class="pill-label">Operational Support</span>
+        <h2 class="services-title">Technical <span class="purple-gradient">Mastery</span></h2>
+        <p class="services-subtitle">
+          Elite-level diagnostics and system hardening for competitive environments.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services grid -->
+    <section class="services-grid-wrap">
+      <div class="glass-grid services-grid">
+        <article class="glass-card services-card">
+          <span class="pill-label">Diagnostics</span>
+          <h3>Hardware Analysis</h3>
+          <p>Component-level failure testing and stress analysis for high-load systems.</p>
+        </article>
+
+        <article class="glass-card services-card">
+          <span class="pill-label">Hardware</span>
+          <h3>Custom PC Building</h3>
+          <p>Bespoke workstation and gaming rigs. Hand-built with industrial-grade cable management.</p>
+        </article>
+
+        <article class="glass-card services-card">
+          <span class="pill-label">Streaming</span>
+          <h3>Twitch Optimization</h3>
+          <p>Dual-PC encoding setups and OBS hardening for frame-perfect broadcasts.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Inquiry form -->
+    <section class="services-form-wrap">
+      <div class="glass-card services-form-card" id="form-container">
+        <h2 class="services-form-title">Project Inquiry</h2>
+
+        <form id="kassa-form">
+          <div class="input-row">
+            <div class="input-group">
+              <label class="form-label">Name</label>
+              <input type="text" placeholder="Full Name" required />
             </div>
 
-            <div class="glass-card">
-                <span class="pill-label" style="width: fit-content;">Hardware</span>
-                <h3 style="margin: 20px 0 10px;">Custom PC Building</h3>
-                <p style="color: #888; font-size: 0.9rem; line-height: 1.6;">Bespoke workstation and gaming rigs. Hand-built with industrial-grade cable management.</p>
+            <div class="input-group">
+              <label class="form-label">Email</label>
+              <input type="email" placeholder="Email Address" required />
             </div>
+          </div>
 
-            <div class="glass-card">
-                <span class="pill-label" style="width: fit-content;">Streaming</span>
-                <h3 style="margin: 20px 0 10px;">Twitch Optimization</h3>
-                <p style="color: #888; font-size: 0.9rem; line-height: 1.6;">Dual-PC encoding setups and OBS hardening for frame-perfect broadcasts.</p>
-            </div>
-        </div>
+          <div class="input-group">
+            <label class="form-label">Mission Type</label>
+            <select required>
+              <option value="custom-build">Custom Build Inquiry</option>
+              <option value="tuning">System Tuning</option>
+              <option value="troubleshooting">Software Support</option>
+            </select>
+          </div>
 
-        <div class="form-wrapper" style="max-width: 650px; margin: 0 auto;">
-            <div class="glass-card" style="padding: 50px;">
-                <h2 style="margin-bottom: 30px; text-align: center;">Project Inquiry</h2>
-                <form id="kassa-form">
-                    <div class="input-row">
-                        <div class="input-group">
-                            <label style="font-size: 0.75rem; color: #555; text-transform: uppercase; font-weight: 800;">Name</label>
-                            <input type="text" placeholder="Full Name" required>
-                        </div>
-                        <div class="input-group">
-                            <label style="font-size: 0.75rem; color: #555; text-transform: uppercase; font-weight: 800;">Email</label>
-                            <input type="email" placeholder="Email Address" required>
-                        </div>
-                    </div>
-                    
-                    <div class="input-group" style="margin-top: 20px;">
-                        <label style="font-size: 0.75rem; color: #555; text-transform: uppercase; font-weight: 800;">Mission Type</label>
-                        <select required>
-                            <option value="custom-build">Custom Build Inquiry</option>
-                            <option value="tuning">System Tuning</option>
-                            <option value="troubleshooting">Software Support</option>
-                        </select>
-                    </div>
+          <div class="input-group">
+            <label class="form-label">Project Details</label>
+            <textarea rows="5" placeholder="Outline your current specs and performance goals..."></textarea>
+          </div>
 
-                    <div class="input-group" style="margin-top: 20px;">
-                        <label style="font-size: 0.75rem; color: #555; text-transform: uppercase; font-weight: 800;">Project Details</label>
-                        <textarea rows="5" placeholder="Outline your current specs and performance goals..."></textarea>
-                    </div>
+          <button type="submit" class="btn-primary services-submit">Transmit Request</button>
+        </form>
+      </div>
+    </section>
+  </main>
 
-                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 30px; padding: 20px;">Transmit Request</button>
-                </form>
-            </div>
-        </div>
-    </main>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
