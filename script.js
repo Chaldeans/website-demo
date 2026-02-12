@@ -128,7 +128,8 @@ function updateCartUI() {
                 <div><h5>${item.name}</h5><small>$${item.price.toLocaleString()}</small></div>
                 <button onclick="removeFromCart(${index})" class="remove-item">REMOVE</button>
             </div>`).join('') + `
-            <button onclick="clearCart()" style="background:none; border:none; color:#FF0000; font-size:10px; cursor:pointer; margin-top:10px; text-transform:uppercase; letter-spacing:1px;">[ Wipe Manifest ]</button>
+                        <button onclick="clearCart()" style="background:none; border:none; color:#FF0000; font-size:10px; cursor:pointer; margin-top:10px; text-transform:uppercase; letter-spacing:1px;">[ Wipe Manifest ]</button>
+
         `;
 
         const total = cart.reduce((sum, item) => sum + item.price, 0);
@@ -169,3 +170,4 @@ document.addEventListener('submit', function(e) {
         }, 400);
     }
 });
+
