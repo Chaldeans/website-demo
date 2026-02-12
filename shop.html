@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Shop | Kassa</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header"><h3>EQUIPMENT MANIFEST</h3><button id="close-cart" class="close-btn" onclick="toggleCart()">×</button></div>
+        <div id="cart-items" class="cart-items-container"><p class="empty-msg">No hardware selected.</p></div>
+        <div class="cart-footer">
+            <div class="total-row"><span>Total:</span><span id="cart-total">$0.00</span></div>
+            <button id="checkout-trigger" class="btn-primary checkout-btn">Initiate Checkout</button>
+        </div>
+    </div>
+    <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+    <div class="background-grid"></div>
+
+    <header>
+        <nav>
+            <div class="logo-wrapper">
+                <img src="IMG_9497.jpg" alt="Logo" class="brand-pfp">
+                <div class="brand-name">KASSA <span>SHOP</span></div>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="services.html">SERVICES</a></li>
+                    <li class="dropdown">
+                        <a href="shop.html" class="active dropbtn">SHOP <span class="arrow">▾</span></a>
+                        <div class="mega-menu">
+                            <div class="mega-content">
+                                <div class="mega-column">
+                                    <h3 class="column-title">EQUIPMENT</h3>
+                                    <ul class="mega-list">
+                                        <li><a href="shop.html?cat=pcs">Gaming PCs</a></li>
+                                        <li><a href="shop.html?cat=monitors">Gaming Monitors</a></li>
+                                        <li><a href="shop.html?cat=mice">Gaming Mice</a></li>
+                                        <li><a href="shop.html?cat=keyboards">Gaming Keyboards</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-column">
+                                    <h3 class="column-title">TUNING</h3>
+                                    <ul class="mega-list">
+                                        <li><a href="shop.html?cat=tuning">Tuning Services</a></li>
+                                        <li><a href="shop.html?cat=software">Software Help</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="javascript:void(0)" onclick="toggleCart()" class="cart-nav-link">CART <span id="cart-count" class="cart-badge">0</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="shop-wrapper">
+        <aside class="shop-sidebar">
+            <h3 class="sidebar-title">Categories</h3>
+            <div class="divider purple"></div>
+            <ul class="category-list">
+    <li><a href="javascript:void(0)" class="cat-link" onclick="filterShop('pcs', this)">Gaming PCs</a></li>
+    <li><a href="javascript:void(0)" class="cat-link" onclick="filterShop('monitors', this)">Gaming Monitors</a></li> 
+    <li><a href="javascript:void(0)" class="cat-link" onclick="filterShop('mice', this)">Gaming Mice</a></li>
+<li><a href="javascript:void(0)" class="cat-link" onclick="filterShop('keyboards', this)">Gaming Keyboards</a></li>
+<li><a href="javascript:void(0)" class="cat-link" onclick="filterShop('software', this)">Software Help</a></li>
+    <li><a href="javascript:void(0)" class="cat-link" onclick="filterShop('tuning', this)">Tuning Services</a></li>
+    <li><a href="javascript:void(0)" class="cat-link active" onclick="filterShop('all', this)">All Products</a></li>
+</ul>
+        </aside>
+
+       <section class="glass-grid" id="product-grid">
+    </section>
+    </main>
+
+    <script src="script.js"></script>
+<div id="product-modal" class="product-modal">
+    <div class="modal-content glass-card">
+        <button class="close-modal" onclick="closeModal()">×</button>
+        <div id="modal-body"></div>
+    </div>
+</div>
+</body>
+</html>

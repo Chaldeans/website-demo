@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kassa Technical Solutions | Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>EQUIPMENT MANIFEST</h3>
+            <button id="close-cart" class="close-btn">×</button>
+        </div>
+        <div id="cart-items" class="cart-items-container">
+            <p class="empty-msg">No hardware selected.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total-row"><span>Total:</span><span id="cart-total">$0.00</span></div>
+            <button id="checkout-trigger" class="btn-primary checkout-btn">Initiate Checkout</button>
+        </div>
+    </div>
+    <div id="cart-overlay" class="cart-overlay"></div>
+    <div class="background-grid"></div>
+
+    <header>
+        <nav>
+            <div class="logo-wrapper">
+                <img src="IMG_9497.jpg" alt="Logo" class="brand-pfp">
+                <div class="brand-name">KASSA <span>TECHNICAL SOLUTIONS</span></div>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">HOME</a></li>
+                    <li><a href="services.html">SERVICES</a></li>
+                    <li class="dropdown">
+                        <a href="shop.html" class="dropbtn">SHOP <span class="arrow">▾</span></a>
+                        <div class="mega-menu">
+                            <div class="mega-content">
+                                <div class="mega-column">
+                                    <h3 class="column-title">EQUIPMENT</h3>
+                                    <div class="divider purple"></div>
+                                    <ul class="mega-list">
+    <li><a href="javascript:void(0)" onclick="filterShop('pcs')">Gaming PCs</a></li>
+    <li><a href="javascript:void(0)" onclick="filterShop('monitors')">Gaming Monitors</a></li>
+    <li><a href="javascript:void(0)" onclick="filterShop('mice')">Gaming Mice</a></li>
+    <li><a href="javascript:void(0)" onclick="filterShop('tuning')">Tuning Services</a></li>
+</ul>
+                                </div>
+                                <div class="mega-column">
+                                    <h3 class="column-title">PC TUNING AND SOFTWARE</h3>
+                                    <div class="divider white"></div>
+                                    <ul class="mega-list">
+                                        <li><a href="shop.html?cat=tuning">Tuning Services</a></li>
+                                        <li><a href="shop.html?cat=software">Software Set-Up</a></li>
+                                        <li><a href="shop.html?cat=software">Troubleshooting</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="toggleCart()" class="cart-nav-link">
+                            CART <span id="cart-count" class="cart-badge">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+ <main>
+    <section class="hero">
+        <div class="hero-content">
+            <span class="pill-label">Elite Hardware Engineering</span>
+            <h1>EQUIPPING <br><span class="purple-gradient">THE ELITE</span></h1>
+            <p>Bespoke gaming systems and precision-tuned peripherals. We engineer the hardware architecture that defines the competitive standard.</p>
+            <a href="shop.html" class="btn-primary" style="width: auto; padding: 18px 40px;">Enter the Shop</a>
+        </div>
+        <div class="hero-image">
+            <img src="IMG_9497.jpg" alt="Kassa Mascot" class="mascot-float">
+        </div>
+    </section>
+</main>
+    <script src="script.js"></script>
+<footer>
+    <div class="footer-content">
+        <p>Copyright &copy; 2021 Kassa Technical Solutions. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
