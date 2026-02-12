@@ -100,36 +100,55 @@ function toggleCart() {
 function addToCart(productId) {
     cart.push(products.find(p => p.id === productId));
     updateCartUI();
-    if(!document.getElementById('cart-sidebar').classList.contains('open')) toggleCart();
+    // The sidebar will no longer open automatically!
 }
 
 function removeFromCart(index) { cart.splice(index, 1); updateCartUI(); }
 
 function updateCartUI() {
     const cartContainer = document.getElementById('cart-items');
-    if (!cartContainer) return;
-    document.getElementById('cart-count').innerText = cart.length;
+    const badge = document.getElementById('cart-count');
+    const totalContainer = document.getElementById('cart-total');
+    
+    if (!cartContainer || !badge) return;
+
+    // Update the badge with the "bump" animation
+    badge.innerText = cart.length;
+    badge.classList.remove('bump'); // Reset animation
+    void badge.offsetWidth;         // Trigger reflow to restart animation
+    badge.classList.add('bump');
     
     if (cart.length === 0) {
         cartContainer.innerHTML = '<p class="empty-msg">No hardware selected.</p>';
-        document.getElementById('cart-total').innerText = '$0.00';
+        totalContainer.innerText = '$0.00';
     } else {
+        // Render items and add a "Clear All" option at the bottom
         cartContainer.innerHTML = cart.map((item, index) => `
             <div class="cart-item">
                 <div><h5>${item.name}</h5><small>$${item.price.toLocaleString()}</small></div>
                 <button onclick="removeFromCart(${index})" class="remove-item">REMOVE</button>
-            </div>`).join('');
-        const total = cart.reduce((sum, item) => sum + item.price, 0);
-        document.getElementById('cart-total').innerText = `$${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
-    }
-} // <--- This bracket closes updateCartUI correctly
+            </div>`).join('') + `
+            <button onclick="clearCart()" style="background:none; border:none; color:#555; font-size:10px; cursor:pointer; margin-top:10px; text-transform:uppercase; letter-spacing:1px;">[ Wipe Manifest ]</button>
+        `;
 
-// --- PROJECT INQUIRY FORM LOGIC (Now outside the function) ---
+        const total = cart.reduce((sum, item) => sum + item.price, 0);
+        totalContainer.innerText = `$${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+    }
+}
+
+// Add this function to handle clearing the whole cart
+function clearCart() {
+    if(confirm("Confirm: Wipe all items from manifest?")) {
+        cart = [];
+        updateCartUI();
+    }
+}
+
+// --- PROJECT INQUIRY FORM LOGIC ---
 document.addEventListener('submit', function(e) {
     if (e.target && e.target.id === 'kassa-form') {
         e.preventDefault();
         
-        // We look for 'form-container' which we added to your services.html
         const container = document.getElementById('form-container') || e.target.parentElement;
         
         e.target.style.opacity = '0';
