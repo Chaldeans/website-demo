@@ -122,5 +122,31 @@ function updateCartUI() {
         const total = cart.reduce((sum, item) => sum + item.price, 0);
         document.getElementById('cart-total').innerText = `$${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
     }
-}
+} // <--- This bracket closes updateCartUI correctly
 
+// --- PROJECT INQUIRY FORM LOGIC (Now outside the function) ---
+document.addEventListener('submit', function(e) {
+    if (e.target && e.target.id === 'kassa-form') {
+        e.preventDefault();
+        
+        // We look for 'form-container' which we added to your services.html
+        const container = document.getElementById('form-container') || e.target.parentElement;
+        
+        e.target.style.opacity = '0';
+        e.target.style.transition = 'opacity 0.4s ease';
+
+        setTimeout(() => {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 20px 0; animation: fadeIn 0.5s ease-out;">
+                    <span class="pill-label" style="margin: 0 auto 20px;">Status: Encrypted</span>
+                    <h2 class="purple-gradient" style="font-size: 2rem; margin-bottom: 15px;">TRANSMISSION RECEIVED</h2>
+                    <p style="color: #888; font-size: 0.95rem; line-height: 1.6;">
+                        Your project details have been uplinked to our technical lead. 
+                        Expect a response within 24 operational hours.
+                    </p>
+                    <button class="btn-primary" style="margin-top: 30px; width: auto; padding: 12px 30px;" onclick="location.reload()">Send New Brief</button>
+                </div>
+            `;
+        }, 400);
+    }
+});
