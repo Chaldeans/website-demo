@@ -100,74 +100,27 @@ function toggleCart() {
 function addToCart(productId) {
     cart.push(products.find(p => p.id === productId));
     updateCartUI();
-    // The sidebar will no longer open automatically!
+    if(!document.getElementById('cart-sidebar').classList.contains('open')) toggleCart();
 }
 
 function removeFromCart(index) { cart.splice(index, 1); updateCartUI(); }
 
 function updateCartUI() {
     const cartContainer = document.getElementById('cart-items');
-    const badge = document.getElementById('cart-count');
-    const totalContainer = document.getElementById('cart-total');
-    
-    if (!cartContainer || !badge) return;
-
-    // Update the badge with the "bump" animation
-    badge.innerText = cart.length;
-    badge.classList.remove('bump'); // Reset animation
-    void badge.offsetWidth;         // Trigger reflow to restart animation
-    badge.classList.add('bump');
+    if (!cartContainer) return;
+    document.getElementById('cart-count').innerText = cart.length;
     
     if (cart.length === 0) {
         cartContainer.innerHTML = '<p class="empty-msg">No hardware selected.</p>';
-        totalContainer.innerText = '$0.00';
+        document.getElementById('cart-total').innerText = '$0.00';
     } else {
-        // Render items and add a "Clear All" option at the bottom
         cartContainer.innerHTML = cart.map((item, index) => `
             <div class="cart-item">
                 <div><h5>${item.name}</h5><small>$${item.price.toLocaleString()}</small></div>
                 <button onclick="removeFromCart(${index})" class="remove-item">REMOVE</button>
-            </div>`).join('') + `
-                        <button onclick="clearCart()" style="background:none; border:none; color:#FF0000; font-size:10px; cursor:pointer; margin-top:10px; text-transform:uppercase; letter-spacing:1px;">[ Wipe Manifest ]</button>
-
-        `;
-
+            </div>`).join('');
         const total = cart.reduce((sum, item) => sum + item.price, 0);
-        totalContainer.innerText = `$${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+        document.getElementById('cart-total').innerText = `$${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
     }
 }
-
-// Add this function to handle clearing the whole cart
-function clearCart() {
-    if(confirm("Confirm: Wipe all items from manifest?")) {
-        cart = [];
-        updateCartUI();
-    }
-}
-
-// --- PROJECT INQUIRY FORM LOGIC ---
-document.addEventListener('submit', function(e) {
-    if (e.target && e.target.id === 'kassa-form') {
-        e.preventDefault();
-        
-        const container = document.getElementById('form-container') || e.target.parentElement;
-        
-        e.target.style.opacity = '0';
-        e.target.style.transition = 'opacity 0.4s ease';
-
-        setTimeout(() => {
-            container.innerHTML = `
-                <div style="text-align: center; padding: 20px 0; animation: fadeIn 0.5s ease-out;">
-                    <span class="pill-label" style="margin: 0 auto 20px;">Status: Encrypted</span>
-                    <h2 class="purple-gradient" style="font-size: 2rem; margin-bottom: 15px;">TRANSMISSION RECEIVED</h2>
-                    <p style="color: #888; font-size: 0.95rem; line-height: 1.6;">
-                        Your project details have been uplinked to our technical lead. 
-                        Expect a response within 24 operational hours.
-                    </p>
-                    <button class="btn-primary" style="margin-top: 30px; width: auto; padding: 12px 30px;" onclick="location.reload()">Send New Brief</button>
-                </div>
-            `;
-        }, 400);
-    }
-});
 
