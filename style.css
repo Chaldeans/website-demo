@@ -450,4 +450,10 @@ footer {
     
     .hero p { margin-bottom: 60px !important; }
 }
+/* Animation for the cart badge when updated */
+.cart-badge.bump {
+    transform: scale(1.4);
+    background-color: #fff; /* Brief flash of white */
+    color: var(--purple);
+}
 }
